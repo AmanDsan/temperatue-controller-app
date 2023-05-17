@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
-function App() {
+export default function App() {
+  const [temp, setTemp] = useState(0);
+
+  let color = "rgb(17, 111, 205)";
+  if (temp >= 20 && temp <= 30) {
+    color = "yellow";
+  } else if (temp > 30 && temp <= 50) {
+    color = "orange";
+  } else if (temp > 50) {
+    color = "red";
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainBox">
+      <div className="display" style={{ backgroundColor: color }}>
+        <h1>{temp}&#176;C</h1>
+      </div>
+      <div className="controls">
+        <button className="btn" onClick={() => setTemp(temp + 1)}>
+          +
+        </button>
+        <button className="btn" onClick={() => setTemp(temp - 1)}>
+          -
+        </button>
+      </div>
     </div>
   );
 }
-
-export default App;
